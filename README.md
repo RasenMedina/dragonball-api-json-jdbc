@@ -118,3 +118,141 @@ src/
 └── Main.java
 ```
 
+## Taules principals
+
+1. CHARACTER
+Representa els personatges.
+
+2. PLANET
+Representa els planetes.
+
+3. RACE
+Races dels personatges.
+
+4. TRANSFORMATION
+Transformacions dels personatges.
+
+5. SYNCHRONIZATION_LOG
+Registre de sincronitzacions/importacions.
+Aquesta taula queda molt bé acadèmicament perquè:
+
+justifica persistència
+justifica sincronització
+justifica control d’errors
+
+I és senzilla.
+
+## Atributs
+
+1. CHARACTER
+
+Camp	Tipus	Restriccions
+character_id	PK	autoincrement
+name	varchar	NOT NULL UNIQUE
+ki	int	CHECK ki >= 0
+max_ki	int	CHECK max_ki >= ki
+gender	varchar	nullable
+description	text	nullable
+image_url	varchar	nullable
+planet_id	FK	nullable
+race_id	FK	nullable
+last_update	datetime	NOT NULL
+
+
+2. PLANET
+
+Camp	Tipus	Restriccions
+planet_id	PK	autoincrement
+name	varchar	NOT NULL UNIQUE
+is_destroyed	boolean	default false
+description	text	nullable
+image_url	varchar	nullable
+
+3. RACE
+
+Camp	Tipus	Restriccions
+race_id	PK	autoincrement
+name	varchar	NOT NULL UNIQUE
+description	text	nullable
+
+4. TRANSFORMATION
+
+Camp	Tipus	Restriccions
+transformation_id	PK	autoincrement
+name	varchar	NOT NULL
+ki	int	CHECK ki >= 0
+image_url	varchar	nullable
+character_id	FK	NOT NULL
+
+
+5. SYNCHRONIZATION_LOG
+
+Camp	Tipus	Restriccions
+log_id	PK	autoincrement
+source_type	varchar	NOT NULL
+operation_type	varchar	NOT NULL
+sync_date	datetime	NOT NULL
+status	varchar	NOT NULL
+message	text	nullable
+
+## Relacions
+
+PLANET → CHARACTER
+1 planeta → molts personatges
+
+RACE → CHARACTER
+1 raça → molts personatges
+
+CHARACTER → TRANSFORMATION
+1 personatge → moltes transformacions
+
+SYNCHRONIZATION_LOG -> Independent.
+
+## Restriccions
+
+1. CHARACTER
+el nom no pot repetir-se
+el ki no pot ser negatiu
+max_ki >= ki
+un personatge pot existir sense planeta
+un personatge pot existir sense transformacions
+
+2. PLANET
+el nom del planeta és únic
+un planeta pot existir sense personatges
+
+3. RACE
+el nom de la raça és únic
+
+4. TRANSFORMATION
+una transformació sempre pertany a un personatge
+el ki no pot ser negatiu
+
+5. SYNCHRONIZATION_LOG
+cada sincronització guarda:
+
+data
+tipus
+resultat
+
+# Avantatges del model
+
+✅ És senzill
+
+Només 5 taules.
+
+✅ Té relacions reals
+
+Sense inventar coses estranyes.
+
+✅ És fàcil de passar a SQL
+✅ És fàcil per JDBC
+✅ És fàcil per JSON
+✅ Té prou complexitat acadèmica
+
+Però sense convertir-se en un infern.
+
+
+
+
+
