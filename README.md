@@ -1,14 +1,12 @@
-# Persistència de Dades: 2a pràctica 
+# # Dragon Ball API JSON JDBC
 
 **Professor:** Xavier Martín  
-**Autors:** Hajar Errahmani & Rasen Mediñà  
+**Autors:** Rasen Mediñà  
 **Data:** 22 de Maig del 2026
 
-# Dragon Ball API JSON JDBC
+## Descripció
 
 Aplicació Java de persistència de dades desenvolupada per a l'assignatura **MS005 - Persistència de dades**.
-
-## Descripció
 
 Aquest projecte permet gestionar dades de l'univers Dragon Ball mitjançant:
 
@@ -22,6 +20,40 @@ L'aplicació treballa principalment amb informació de:
 
 * Personatges
 * Planetes
+
+---------------------------------
+
+## Diagrama Entitat-Relació
+
+<p align="center">
+  <img src="images/diagrama_er.png" width="800">
+</p>
+
+---
+
+## Esquema Relacional
+
+<p align="center">
+  <img src="images/esquema_relacional.png" width="800">
+</p>
+
+---
+
+## Estructura del projecte
+
+<p align="center">
+  <img src="images/estructura_projecte.png" width="500">
+</p>
+
+---
+
+## Exemple d'execució
+
+<p align="center">
+  <img src="images/menu_principal.png" width="600">
+</p>
+
+---------------------------------
 
 ## Tecnologies utilitzades
 
